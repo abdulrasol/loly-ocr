@@ -1,0 +1,5 @@
+flask_session
+requests
+ocrspace
+python-docx
+flask
