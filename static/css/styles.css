@@ -1,0 +1,35 @@
+.bread {
+  padding-top: 7px;
+}
+
+.main-block {
+  margin-top: 15px;
+}
+
+form {
+  display: flex;
+  min-height: 100vh;
+  max-height: 100vh;
+  flex-direction: column;
+}
+
+body {
+  background-image: url("../images/background.png");
+  background-origin: border-box;
+  background-size: cover;
+  background-position: center;
+  background-repeat: revert;
+}
+
+select {
+  background-color: #fff;
+}
+
+main {
+  flex: 1 0 auto;
+  margin-top: 10px;
+}
+
+.t {
+  counter-reset: #fff;
+}

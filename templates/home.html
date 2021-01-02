@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block main %}
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="input-field col s12 m6 l3">
+        <select>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <label class="black-text">Select file language</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span><i class="material-icons left">attach_file</i>File</span>
+            <input type="file" />
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span><i class="material-icons left">camera_alt</i>Camers</span>
+            <input type="file" accept="image/*" capture="user" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- end main section -->
+<!-- start footer section -->
+<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container">
+      <a class="btn-floating cyan right"
+        ><i class="material-icons">arrow_forward</i></a
+      >
+    </div>
+  </div>
+</footer>
+<!-- end footer section -->
+{% endblock main %}
