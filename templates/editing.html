@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block main %}
+<!-- main -->
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea
+            dir="auto"
+            id="textarea1"
+            class="materialize-textarea"
+            rows="5"
+            cols="5"
+          ></textarea>
+          <label for="textarea1">Textarea</label>
+        </div>
+      </div>
+      <div class="row">
+        <p class="flow-text">Download as:</p>
+        <p>
+          <a class="waves-effect waves-light btn"
+            ><i class="material-icons left">cloud</i>text file</a
+          >
+          <a class="waves-effect waves-light btn"
+            ><i class="material-icons left">cloud</i>word doc</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- end main section -->
+<!-- start footer section -->
+<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container">
+      <a class="btn-floating cyan left"
+        ><i class="material-icons">arrow_back</i></a
+      >
+    </div>
+  </div>
+</footer>
+<!-- end footer section -->
+{% endblock main %}
