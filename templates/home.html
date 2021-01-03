@@ -3,11 +3,11 @@
   <div class="container">
     <div class="row">
       <div class="input-field col s12 m6 l3">
-        <select>
-          <option value="" disabled selected>Choose your option</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+        <select name="lang">
+          <option value="" disabled selected>Choose Language</option>
+          {% for lang in langs %}
+          <option value="{{lang}}">{{lang}}</option>
+          {% endfor %}
         </select>
         <label class="black-text">Select file language</label>
       </div>
@@ -20,7 +20,7 @@
         <div class="file-field input-field">
           <div class="btn">
             <span><i class="material-icons left">attach_file</i>File</span>
-            <input type="file" />
+            <input type="file" name="imgae" />
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
         <div class="file-field input-field">
           <div class="btn">
             <span><i class="material-icons left">camera_alt</i>Camers</span>
-            <input type="file" accept="image/*" capture="user" />
+            <input type="file" accept="image/*" capture="user" name="camera" />
           </div>
         </div>
       </div>
@@ -40,9 +40,9 @@
 <footer class="page-footer teal">
   <div class="footer-copyright">
     <div class="container">
-      <a class="btn-floating cyan right"
-        ><i class="material-icons">arrow_forward</i></a
-      >
+      <button class="btn-floating cyan right" type="submit" name="action">
+        <i class="material-icons right">arrow_forward</i>
+      </button>
     </div>
   </div>
 </footer>
