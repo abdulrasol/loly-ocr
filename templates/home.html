@@ -13,22 +13,27 @@
       </div>
     </div>
   </div>
-
   <div class="container">
-    <div class="row">
-      <div class="col">
+    <div class="row left">
+      <div class="col s12 m6 l5">
         <div class="file-field input-field">
           <div class="btn">
             <span><i class="material-icons left">attach_file</i>File</span>
-            <input type="file" name="file" />
+            <input type="file" accept="image/*" name="file" />
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" />
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col s12 m6 l5">
         <div class="file-field input-field">
           <div class="btn">
-            <span><i class="material-icons left">camera_alt</i>Camers</span>
+            <span><i class="material-icons left">camera_alt</i>Camera</span>
             <input type="file" accept="image/*" capture="user" name="camera" />
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" />
           </div>
         </div>
       </div>

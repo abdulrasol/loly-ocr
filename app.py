@@ -40,11 +40,11 @@ def editing(msg = None):
         else:
             file = request.files['camera']
             
-        
         get = helpers.ocr(file, language=request.form.get('lang'))
         if get['CODE'] == 0:
             return render_template('editing.html', action='/download', text = get['MSG'])
         else:
+            print(get)
             return home(get['MSG'])
     return home('Selcet file first!')
 
