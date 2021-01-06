@@ -73,6 +73,3 @@ def save_file(file):
     file.save(os.path.join(UPLOAD_FOLDER, filename))
     return os.path.join(UPLOAD_FOLDER, filename)
 
-
-def download_file(text, type):
-    pass

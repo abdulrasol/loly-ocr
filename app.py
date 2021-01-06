@@ -25,7 +25,7 @@ app.secret_key = 'super secret key'
 def home(msg = None):
     if msg == None:
         msg = False
-    return render_template('home.html', action='/editing', langs = helpers.langs, msg=msg)
+    return render_template('home.html', action='/editing', langs=helpers.langs, msg=msg, title='Loly | Upload file to extract text')
 
 # Editing Def
 @app.route('/editing', methods=["GET", "POST"])
@@ -42,7 +42,7 @@ def editing(msg = None):
             
         get = helpers.ocr(file, language=request.form.get('lang'))
         if get['CODE'] == 0:
-            return render_template('editing.html', action='/downloading', text = get['MSG'])
+            return render_template('editing.html', action='/downloading', text = get['MSG'], title='Loly | editing extracted text')
         else:
             print(get)
             return home(get['MSG'])
@@ -61,5 +61,5 @@ def downloading():
                 if os.stat(file).st_mtime < time.time() - 900:
                     os.remove(file)
         url = f'{request.url_root}{helpers.FILES_DIR}/{filename}'
-        return render_template('downloading.html', url=url)
+        return render_template('downloading.html', url=url, title=f"Loly | download extracted text as{request.form.get('get')}")
     return home('Start by uploading file first!')
