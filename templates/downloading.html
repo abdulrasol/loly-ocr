@@ -10,4 +10,13 @@
   </div>
   <a id="download-file" href="{{url}}" download></a>
 </div>
+<script>
+  // download file automaticlly
+  setTimeout((e) => {
+    document.getElementById("download-file").click();
+    setTimeout((e) => {
+      window.location.href = window.location.origin;
+    }, 1500);
+  }, 3000);
+</script>
 {% endblock main %}
