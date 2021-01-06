@@ -1,9 +1,9 @@
-.bread {
-  padding-top: 7px;
-}
-
-.main-block {
-  margin-top: 15px;
+body {
+  background-image: url("../images/background.png");
+  background-origin: border-box;
+  background-size: cover;
+  background-position: center;
+  background-repeat: revert;
 }
 
 form {
@@ -13,23 +13,30 @@ form {
   flex-direction: column;
 }
 
-body {
-  background-image: url("../images/background.png");
-  background-origin: border-box;
-  background-size: cover;
-  background-position: center;
-  background-repeat: revert;
+main {
+  flex: 1 0 auto;
+  margin-top: 10px;
 }
 
 select {
   background-color: #fff;
 }
 
-main {
-  flex: 1 0 auto;
-  margin-top: 10px;
+/*
+.bread {
+  padding-top: 7px;
+}
+
+.main-block {
+  margin-top: 15px;
 }
 
 .t {
   counter-reset: #fff;
+}
+
+*/
+
+.progress {
+  margin-top: 30px;
 }

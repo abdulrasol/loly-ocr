@@ -25,6 +25,7 @@ node_modules/
 __pycache__
 __pycache__/*
 static/uploads/*
+static/texts/*
 static/*.html
 static/icons
 static/icons/*

@@ -1,7 +1,7 @@
-from flask import Flask, redirect, request, render_template
+from flask import Flask, redirect, request, render_template, send_file, send_from_directory
 from flask_session import Session
 from tempfile import mkdtemp
-import helpers
+import helpers, time, os
 
 
 
@@ -42,13 +42,24 @@ def editing(msg = None):
             
         get = helpers.ocr(file, language=request.form.get('lang'))
         if get['CODE'] == 0:
-            return render_template('editing.html', action='/download', text = get['MSG'])
+            return render_template('editing.html', action='/downloading', text = get['MSG'])
         else:
             print(get)
             return home(get['MSG'])
     return home('Selcet file first!')
 
 # downloading file after editing
-@app.route('/downloading')
+@app.route('/downloading', methods=["GET", "POST"])
 def downloading():
-    pass
+    if request.method == 'POST':
+        # save file as user request
+        filename = time.strftime(f"%y%m%d%H%M%S.{request.form.get('get')}")
+        with open(os.path.join(helpers.FILES_DIR,filename),'a') as file:
+            file.write(request.form.get('text'))
+            for file in os.listdir(helpers.FILES_DIR):
+                file = os.path.join(helpers.FILES_DIR, file)
+                if os.stat(file).st_mtime < time.time() - 900:
+                    os.remove(file)
+        url = f'{request.url_root}{helpers.FILES_DIR}/{filename}'
+        return render_template('downloading.html', url=url)
+    return home('Start by uploading file first!')

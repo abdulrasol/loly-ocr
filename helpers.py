@@ -69,7 +69,10 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def save_file(file):
-    print(file.filename)
     filename = secure_filename(file.filename)
     file.save(os.path.join(UPLOAD_FOLDER, filename))
     return os.path.join(UPLOAD_FOLDER, filename)
+
+
+def download_file(text, type):
+    pass

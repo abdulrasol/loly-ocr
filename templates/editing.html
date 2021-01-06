@@ -11,6 +11,7 @@
             class="materialize-textarea"
             rows="5"
             cols="5"
+            name="text"
           >
 {{text}}</textarea
           >
@@ -20,12 +21,12 @@
       <div class="row">
         <p class="flow-text">Download as:</p>
         <p>
-          <a class="waves-effect waves-light btn"
-            ><i class="material-icons left">cloud</i>text file</a
-          >
-          <a class="waves-effect waves-light btn"
-            ><i class="material-icons left">cloud</i>word doc</a
-          >
+          <button class="waves-effect waves-light btn" name="get" value="txt">
+            <i class="material-icons left">cloud</i>text file
+          </button>
+          <button class="waves-effect waves-light btn" name="get" value="doc">
+            <i class="material-icons left">cloud</i>word doc
+          </button>
         </p>
       </div>
     </div>
