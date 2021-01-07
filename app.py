@@ -63,3 +63,8 @@ def downloading():
         url = f'{request.url_root}{helpers.FILES_DIR}/{filename}'
         return render_template('downloading.html', url=url, title=f"Loly | download extracted text as{request.form.get('get')}")
     return home('Start by uploading file first!')
+
+# setup PWA app
+@app.route('/service-worker.js')
+def sw():
+    return app.send_static_file('js/service-worker.js'), 200, {'Content-Type': 'text/javascript'}

@@ -2,6 +2,8 @@
 <html>
   <head>
     <!--Import Google Icon Font-->
+
+  
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -9,10 +11,17 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css" media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="static/css/styles.css" />
-    <link rel="shortcut icon" href="static/images/logo.svg" type="image/x-icon">
+    
+
+    <!-- Web app manifest -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
 
     <!--Let browser know website is optimized for mobile-->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="static/images/icon.png" type="image/x-icon">
+    <meta name="description" content="your_pwa_description">
     <title>{{title}}</title>
   </head>
 
@@ -42,11 +51,25 @@
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="static/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="static/js/actions.js"></script>
     {% if msg %}
     <script>
       M.toast({html: '{{msg}}'})
     </script>
     {% endif %}
+    <script>
+      if ('serviceWorker' in navigator) {
+          navigator.serviceWorker
+          .register('./service-worker.js')
+          .then(function(registration) {
+              console.log('Service Worker Registered!');
+              return registration;
+          })
+          .catch(function(err) {
+              console.error('Unable to register service worker.', err);
+          });
+      }
+    </script>
   </body>
 </html>
