@@ -3,7 +3,6 @@ const FILES_TO_CACHE = [
   "/static/offline.html",
   "/static/css/styles.css",
   "/static/images/background.webp",
-  "static/images/offline.svg",
   "/static/js/materialize.min.js",
   "/static/css/materialize.min.css",
   "static/images/logo-navbar.png",
