@@ -26,7 +26,8 @@ __pycache__
 __pycache__/*
 static/uploads/*
 static/texts/*
-static/*.html
+static/html/
+static/html/*.html
 static/icons
 static/icons/*
 static/images/icon.svg
