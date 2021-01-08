@@ -19,9 +19,11 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="static/images/icon.png" type="image/x-icon">
     <meta name="description" content="your_pwa_description">
+    <meta name="theme-color" content="#009688">
     <title>{{title}}</title>
   </head>
 
@@ -36,7 +38,7 @@
                               <img src="static/images/logo-navbar.png" alt="" height="64" srcset="">
                             </a>
                             <ul id="nav" class="right">
-                                <li><a href=#"><i class="material-icons">info</i></a></li>
+                                <li id="installButton" hidden><a href=#"><i class="material-icons">system_update</i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -70,6 +72,38 @@
               console.error('Unable to register service worker.', err);
           });
       }
+
+      let deferredInstallPrompt = null;
+      const installButton = document.getElementById('installButton');
+      installButton.addEventListener('click', installPWA);
+      
+      window.addEventListener('beforeinstallprompt', saveBeforeInstallPromptEvent);
+
+      function saveBeforeInstallPromptEvent(evt) {
+        deferredInstallPrompt = evt;
+        installButton.removeAttribute('hidden');
+      }
+
+      function installPWA(evt) {
+        deferredInstallPrompt.prompt();
+        evt.srcElement.setAttribute('hidden', true);
+        deferredInstallPrompt.userChoice
+        .then((choice) => {
+          if (choice.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt', choice);
+          } else {
+            console.log('User dismissed the A2HS prompt', choice);
+          }
+          deferredInstallPrompt = null;
+        });
+      }
+
+      window.addEventListener('appinstalled', logAppInstalled);
+      
+      function logAppInstalled(evt) {
+        console.log('App was installed.', evt);
+      }
+
     </script>
   </body>
 </html>

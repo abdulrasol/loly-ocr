@@ -1,6 +1,16 @@
 const CACHE_NAME = "static-cache";
+const FILES_TO_CACHE = [
+  "/static/offline.html",
+  "/static/css/styles.css",
+  "/static/images/background.webp",
+  "static/images/offline.svg",
+  "/static/js/materialize.min.js",
+  "/static/css/materialize.min.css",
+  "static/images/logo-navbar.png",
+  "static/images/icon.png",
+];
 
-const FILES_TO_CACHE = ["/static/offline.html", "/static/css/styles.css"];
+const offlineUrl = "static/offline.html";
 
 self.addEventListener("install", (evt) => {
   console.log("[ServiceWorker] Install");
@@ -10,8 +20,6 @@ self.addEventListener("install", (evt) => {
       return cache.addAll(FILES_TO_CACHE);
     })
   );
-
-  self.skipWaiting();
 });
 
 self.addEventListener("activate", (evt) => {
@@ -30,28 +38,61 @@ self.addEventListener("activate", (evt) => {
   );
   self.clients.claim();
 });
-
-self.addEventListener("fetch", function (event) {
-  event.respondWith(fetch(event.request));
-});
-
-self.addEventListener("fetch", (evt) => {
-  if (evt.request.mode !== "navigate") {
-    return;
+/*
+this.addEventListener("fetch", (event) => {
+  // request.mode = navigate isn't supported in all browsers
+  // so include a check for Accept: text/html header.
+  if (
+    event.request.mode === "navigate" ||
+    (event.request.method === "GET" &&
+      event.request.headers.get("accept").includes("text/html"))
+  ) {
+    event.respondWith(
+      fetch(event.request.url).catch((error) => {
+        // Return the offline page
+        return caches.match(offlineUrl);
+      })
+    );
+  } else {
+    // Respond with everything else if we can
+    event.respondWith(
+      caches.match(event.request).then(function (response) {
+        return response || fetch(event.request);
+      })
+    );
   }
-  evt.respondWith(
-    fetch(evt.request).catch(() => {
-      return caches.open(CACHE_NAME).then((cache) => {
-        return cache.match("offline.html");
-      });
-    })
-  );
 });
+*/
+self.addEventListener("fetch", (event) => {
+  console.log("Fetch event for ", event.request.url);
+  if (
+    event.request.mode === "navigate" ||
+    (event.request.method === "GET" &&
+      event.request.headers.get("accept").includes("text/html"))
+  ) {
+    event.respondWith(
+      caches
+        .match(event.request)
+        .then((response) => {
+          if (response) {
+            console.log("Found ", event.request.url, " in cache");
+            return response;
+          }
+          console.log("Network request for ", event.request.url);
+          return fetch(event.request);
 
-self.addEventListener("fetch", function (event) {
-  event.respondWith(
-    fetch(event.request).catch(function () {
-      return caches.match(event.request);
-    })
-  );
+          // TODO 4 - Add fetched files to the cache
+        })
+        .catch((error) => {
+          return caches.match(offlineUrl);
+        })
+    );
+  } else {
+    // Respond with everything else if we can
+    event.respondWith(
+      caches.match(event.request).then(function (response) {
+        return response || fetch(event.request);
+      })
+    );
+  }
 });
