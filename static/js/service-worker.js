@@ -7,6 +7,8 @@ const FILES_TO_CACHE = [
   "/static/css/materialize.min.css",
   "static/images/logo-navbar.png",
   "static/images/icon.png",
+  "static/images/apple_launch.webp",
+  "static/images/apple_icon.png",
 ];
 
 const offlineUrl = "static/offline.html";
