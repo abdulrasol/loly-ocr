@@ -27,3 +27,7 @@ window.addEventListener("appinstalled", logAppInstalled);
 function logAppInstalled(evt) {
   console.log("App was installed.", evt);
 }
+
+if (installButton !== null) {
+  installButton.addEventListener("click", installPWA);
+}
